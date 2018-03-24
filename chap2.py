@@ -319,6 +319,6 @@ for label in np.unique(y):
     # count (sum) entries of 1 per feature
     counts[label] = X[y == label].sum(axis=0)
 print("Feature counts:\n{}".format(counts))
-import graphviz
-
+#import graphviz
+# 여기부터 안
 mglearn.plots.plot_animal_tree()
