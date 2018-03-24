@@ -84,3 +84,18 @@ plt.plot(neighbors_settings, test_accuracy, label="test accuracy")
 plt.ylabel("Accuracy")
 plt.xlabel("n_neighbors")
 plt.legend()
+
+mglearn.plots.plot_knn_regression(n_neighbors=1)
+
+mglearn.plots.plot_knn_regression(n_neighbors=3)
+
+from sklearn.neighbors import KNeighborsRegressor
+X, y = mglearn.datasets.make_wave(n_samples=40)
+# split the wave dataset into a training and a test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+# instantiate the model and set the number of neighbors to consider to 3
+reg = KNeighborsRegressor(n_neighbors=3)
+# fit the model using the training data and training targets
+reg.fit(X_train, y_train)
+
+
