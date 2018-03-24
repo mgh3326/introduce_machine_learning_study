@@ -34,9 +34,9 @@ plt.plot(x, y, marker="x")
 import pandas as pd
 # create a simple dataset of people
 data = {'Name': ["John", "Anna", "Peter", "Linda"],
-'Location' : ["New York", "Paris", "Berlin", "London"],
-'Age' : [24, 13, 53, 33]
-}
+        'Location': ["New York", "Paris", "Berlin", "London"],
+        'Age': [24, 13, 53, 33]
+        }
 data_pandas = pd.DataFrame(data)
 # IPython.display allows "pretty printing" of dataframes
 # in the Jupyter notebook
@@ -85,7 +85,7 @@ print("Target:\n{}".format(iris_dataset['target']))
 
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
-iris_dataset['data'], iris_dataset['target'], random_state=0)
+    iris_dataset['data'], iris_dataset['target'], random_state=0)
 
 print("X_train shape: {}".format(X_train.shape))
 print("y_train shape: {}".format(y_train.shape))
@@ -100,7 +100,7 @@ import mglearn
 iris_dataframe = pd.DataFrame(X_train, columns=iris_dataset.feature_names)
 # create a scatter matrix from the dataframe, color by y_train
 grr = pd.scatter_matrix(iris_dataframe, c=y_train, figsize=(15, 15), marker='o',
-hist_kwds={'bins': 20}, s=60, alpha=.8, cmap=mglearn.cm3)
+                        hist_kwds={'bins': 20}, s=60, alpha=.8, cmap=mglearn.cm3)
 
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -116,7 +116,7 @@ print("X_new.shape: {}".format(X_new.shape))
 prediction = knn.predict(X_new)
 print("Prediction: {}".format(prediction))
 print("Predicted target name: {}".format(
-iris_dataset['target_names'][prediction]))
+    iris_dataset['target_names'][prediction]))
 
 y_pred = knn.predict(X_test)
 print("Test set predictions:\n {}".format(y_pred))
@@ -126,7 +126,7 @@ print("Test set score: {:.2f}".format(np.mean(y_pred == y_test)))
 print("Test set score: {:.2f}".format(knn.score(X_test, y_test)))
 
 X_train, X_test, y_train, y_test = train_test_split(
-iris_dataset['data'], iris_dataset['target'], random_state=0)
+    iris_dataset['data'], iris_dataset['target'], random_state=0)
 knn = KNeighborsClassifier(n_neighbors=1)
 knn.fit(X_train, y_train)
 print("Test set score: {:.2f}".format(knn.score(X_test, y_test)))

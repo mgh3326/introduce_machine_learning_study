@@ -29,7 +29,7 @@ print("Shape of cancer data: {}".format(cancer.data.shape))
 
 import numpy as np
 print("Sample counts per class:\n{}".format(
-{n: v for n, v in zip(cancer.target_names, np.bincount(cancer.target))}))
+    {n: v for n, v in zip(cancer.target_names, np.bincount(cancer.target))}))
 
 
 print("Feature names:\n{}".format(cancer.feature_names))
@@ -45,7 +45,6 @@ print("X.shape: {}".format(X.shape))
 mglearn.plots.plot_knn_classification(n_neighbors=1)
 
 mglearn.plots.plot_knn_classification(n_neighbors=3)
-
 
 
 from sklearn.model_selection import train_test_split
@@ -68,7 +67,8 @@ for n_neighbors, ax in zip([1, 3, 9], axes):
     # the fit method returns the object self, so we can instantiate
     # and fit in one line
     clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X, y)
-    mglearn.plots.plot_2d_separator(clf, X, fill=True, eps=0.5, ax=ax, alpha=.4)
+    mglearn.plots.plot_2d_separator(
+        clf, X, fill=True, eps=0.5, ax=ax, alpha=.4)
     mglearn.discrete_scatter(X[:, 0], X[:, 1], y, ax=ax)
     ax.set_title("{} neighbor(s)".format(n_neighbors))
     ax.set_xlabel("feature 0")
@@ -78,7 +78,7 @@ axes[0].legend(loc=3)
 from sklearn.datasets import load_breast_cancer
 cancer = load_breast_cancer()
 X_train, X_test, y_train, y_test = train_test_split(
-        cancer.data, cancer.target, stratify=cancer.target, random_state=66)
+    cancer.data, cancer.target, stratify=cancer.target, random_state=66)
 training_accuracy = []
 test_accuracy = []
 # try n_neighbors from 1 to 10
@@ -125,13 +125,13 @@ for n_neighbors, ax in zip([1, 3, 9], axes):
     ax.plot(X_train, y_train, '^', c=mglearn.cm2(0), markersize=8)
     ax.plot(X_test, y_test, 'v', c=mglearn.cm2(1), markersize=8)
     ax.set_title(
-    "{} neighbor(s)\n train score: {:.2f} test score: {:.2f}".format(
-    n_neighbors, reg.score(X_train, y_train),
-    reg.score(X_test, y_test)))
+        "{} neighbor(s)\n train score: {:.2f} test score: {:.2f}".format(
+            n_neighbors, reg.score(X_train, y_train),
+            reg.score(X_test, y_test)))
     ax.set_xlabel("Feature")
     ax.set_ylabel("Target")
 axes[0].legend(["Model predictions", "Training data/target",
-"Test data/target"], loc="best")
+                "Test data/target"], loc="best")
 
 mglearn.plots.plot_linear_regression_wave()
 
@@ -151,10 +151,10 @@ X, y = mglearn.datasets.load_extended_boston()
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 lr = LinearRegression().fit(X_train, y_train)
-    
+
 print("Training set score: {:.2f}".format(lr.score(X_train, y_train)))
 print("Test set score: {:.2f}".format(lr.score(X_test, y_test)))
-                     
+
 from sklearn.linear_model import Ridge
 ridge = Ridge().fit(X_train, y_train)
 print("Training set score: {:.2f}".format(ridge.score(X_train, y_train)))
@@ -214,7 +214,7 @@ fig, axes = plt.subplots(1, 2, figsize=(10, 3))
 for model, ax in zip([LinearSVC(), LogisticRegression()], axes):
     clf = model.fit(X, y)
     mglearn.plots.plot_2d_separator(clf, X, fill=False, eps=0.5,
-    ax=ax, alpha=.7)
+                                    ax=ax, alpha=.7)
     mglearn.discrete_scatter(X[:, 0], X[:, 1], y, ax=ax)
     ax.set_title("{}".format(clf.__class__.__name__))
     ax.set_xlabel("Feature 0")
@@ -226,7 +226,7 @@ mglearn.plots.plot_linear_svc_regularization()
 from sklearn.datasets import load_breast_cancer
 cancer = load_breast_cancer()
 X_train, X_test, y_train, y_test = train_test_split(
-cancer.data, cancer.target, stratify=cancer.target, random_state=42)
+    cancer.data, cancer.target, stratify=cancer.target, random_state=42)
 logreg = LogisticRegression().fit(X_train, y_train)
 print("Training set score: {:.3f}".format(logreg.score(X_train, y_train)))
 print("Test set score: {:.3f}".format(logreg.score(X_test, y_test)))
@@ -252,9 +252,9 @@ plt.legend()
 for C, marker in zip([0.001, 1, 100], ['o', '^', 'v']):
     lr_l1 = LogisticRegression(C=C, penalty="l1").fit(X_train, y_train)
     print("Training accuracy of l1 logreg with C={:.3f}: {:.2f}".format(
-    C, lr_l1.score(X_train, y_train)))
+        C, lr_l1.score(X_train, y_train)))
     print("Test accuracy of l1 logreg with C={:.3f}: {:.2f}".format(
-    C, lr_l1.score(X_test, y_test)))
+        C, lr_l1.score(X_test, y_test)))
 plt.plot(lr_l1.coef_.T, marker, label="C={:.3f}".format(C))
 plt.xticks(range(cancer.data.shape[1]), cancer.feature_names, rotation=90)
 plt.hlines(0, 0, cancer.data.shape[1])
@@ -277,23 +277,23 @@ print("Intercept shape: ", linear_svm.intercept_.shape)
 mglearn.discrete_scatter(X[:, 0], X[:, 1], y)
 line = np.linspace(-15, 15)
 for coef, intercept, color in zip(linear_svm.coef_, linear_svm.intercept_,
-['b', 'r', 'g']):
+                                  ['b', 'r', 'g']):
     plt.plot(line, -(line * coef[0] + intercept) / coef[1], c=color)
 plt.ylim(-10, 15)
 plt.xlim(-10, 8)
 plt.xlabel("Feature 0")
 plt.ylabel("Feature 1")
 plt.legend(['Class 0', 'Class 1', 'Class 2', 'Line class 0', 'Line class 1',
-'Line class 2'], loc=(1.01, 0.3))
-    
+            'Line class 2'], loc=(1.01, 0.3))
+
 mglearn.plots.plot_2d_classification(linear_svm, X, fill=True, alpha=.7)
 mglearn.discrete_scatter(X[:, 0], X[:, 1], y)
 line = np.linspace(-15, 15)
 for coef, intercept, color in zip(linear_svm.coef_, linear_svm.intercept_,
-['b', 'r', 'g']):
+                                  ['b', 'r', 'g']):
     plt.plot(line, -(line * coef[0] + intercept) / coef[1], c=color)
 plt.legend(['Class 0', 'Class 1', 'Class 2', 'Line class 0', 'Line class 1',
-'Line class 2'], loc=(1.01, 0.3))
+            'Line class 2'], loc=(1.01, 0.3))
 plt.xlabel("Feature 0")
 plt.ylabel("Feature 1")
 
@@ -308,9 +308,9 @@ y_pred = logreg.fit(X_train, y_train).predict(X_test)
 y_pred = LogisticRegression().fit(X_train, y_train).predict(X_test)
 
 X = np.array([[0, 1, 0, 1],
-[1, 0, 1, 1],
-[0, 0, 0, 1],
-[1, 0, 1, 0]])
+              [1, 0, 1, 1],
+              [0, 0, 0, 1],
+              [1, 0, 1, 0]])
 y = np.array([0, 1, 0, 1])
 
 counts = {}
