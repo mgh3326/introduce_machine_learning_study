@@ -13,7 +13,7 @@ print("NumPy array:\n{}".format(eye))
 #%%In[4]
 # Convert the NumPy array to a SciPy sparse matrix in CSR format
 # Only the nonzero entries are stored
-sparse_matrix = sparse.csr_matrix(eye)
+sparse_matrix = sparse.csr_matrix(eye)  # csc_matrix 이게 희소 행렬을 뜻함
 print("\nSciPy sparse CSR matrix:\n{}".format(sparse_matrix))
 #%%In[5]
 data = np.ones(4)
@@ -111,7 +111,7 @@ print("X_test shape: {}".format(X_test.shape))
 print("y_test shape: {}".format(y_test.shape))
 
 #%%In[24]
-# 이거 부터 실행해야됨
+# 이거 부터 실행해야됨 이거 ㄹㅇ 하나도 모르겠다.
 import mglearn
 # create dataframe from data in X_train
 # label the columns using the strings in iris_dataset.feature_names
